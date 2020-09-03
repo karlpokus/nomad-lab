@@ -12,16 +12,20 @@ This dir is synched to `/vagrant` in the vm
 $ vagrant up && vagrant ssh
 # start nomad
 $ sudo nomad agent -dev | grep ERROR
-# build the binary on your host (requires go)
-$ ./build.sh
-# in the vm - move the binary to a location where nomad can find it
-$ ./install.sh
 # run the server job
-$ nomad job run|plan server.nomad
+$ nomad job run server.nomad
 # inspect the job
 $ nomad status server
 # cleanup when done
 $ vagrant destroy
+```
+
+# new release
+```bash
+# 1. Build-, and package the binary on your host (requires go)
+$ ./build.sh
+# 2. commit and tag changes and make a new release on github
+# 3. update source and checksum in server.nomad
 ```
 
 # todos
