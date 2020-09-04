@@ -8,6 +8,11 @@ job "server" {
 			port "http" {} # dynamic port alloc
 		}
 
+		service { # register w consul
+			name = "server"
+			port = "http"
+		}
+
     task "server" {
       driver = "exec"
       config {
