@@ -20,8 +20,8 @@ job "server" {
         }
       }
       resources {
-        cpu    = 500 # 500 MHz
-        memory = 100 # 256MB
+        cpu    = 500 # MHz
+        memory = 50 # MB
       }
     }
   }
