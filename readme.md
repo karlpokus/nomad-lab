@@ -6,13 +6,15 @@ Testing the nomad orchestrator by running some things
 - go
 
 # usage
-This dir is synched to `/vagrant` in the vm
+
+Single nomad agent on single host
+
 ```bash
 # run vagrant
 $ vagrant up && vagrant ssh
 # start nomad
 $ sudo nomad agent -dev | grep ERROR
-# run the server job
+# run the server job in /vagrant
 $ nomad job run server.nomad
 # inspect the job
 $ nomad status server
@@ -20,7 +22,16 @@ $ nomad status server
 $ vagrant destroy
 ```
 
-# new release
+Nomad cluster on single host
+
+```bash
+$ mkdir -p /tmp/{server1,client1,client2}
+$ nomad agent -config conf/server.hcl
+$ sudo nomad agent -config conf/client1.hcl
+$ sudo nomad agent -config conf/client2.hcl
+```
+
+# new server release
 ```bash
 # 1. Build-, and package the binary on your host (requires go)
 $ ./build.sh
@@ -32,5 +43,6 @@ $ ./build.sh
 - [x] run arbitrary binary w exec driver
 - [x] scale out using dynamic ports
 - [x] use artifact to fetch remote resource
+- [x] nomad agent cluster
 - [ ] inspect cgroups for binary jobs
 - [ ] try nomad alloc signal|exec
