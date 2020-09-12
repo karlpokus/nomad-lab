@@ -26,17 +26,19 @@ Nomad cluster on single host
 
 ```bash
 $ mkdir -p /tmp/{server1,client1,client2}
-$ nomad agent -config conf/server.hcl | grep ERROR > log/server.log &
-$ sudo nomad agent -config conf/client1.hcl | grep ERROR > log/client1.log &
-$ sudo nomad agent -config conf/client2.hcl | grep ERROR > log/client2.log &
+$ cd /vagrant
+$ nohup nomad agent -config conf/server.hcl | grep ERROR > log/server.log &
+$ nohup sudo nomad agent -config conf/client1.hcl | grep ERROR > log/client1.log &
+$ nohup sudo nomad agent -config conf/client2.hcl | grep ERROR > log/client2.log &
+$ tail -f log/*
 ```
 
 # new server release
 ```bash
-# 1. Build-, and package the binary on your host (requires go)
+# 1. Build-, and package the binaries on your host (requires go)
 $ ./build.sh
 # 2. commit and tag changes and make a new release on github
-# 3. update source and checksum in server.nomad
+# 3. update source and checksum in *.nomad
 ```
 
 # todos
@@ -49,3 +51,4 @@ $ ./build.sh
 - [ ] disaster recovery
 - [ ] try bridge network
 - [x] register service w consul
+- [x] service discovery w consul
