@@ -55,6 +55,8 @@ Vagrant.configure(2) do |config|
 
   # Expose the nomad api and ui to the host
   config.vm.network "forwarded_port", guest: 4646, host: 4646, auto_correct: true, host_ip: "127.0.0.1"
+	# Expose consul api and ui to the host (requires prxy to forward conn to remote localhost)
+	config.vm.network "forwarded_port", guest: 8989, host: 8500, auto_correct: true, host_ip: "127.0.0.1"
 
   # Increase memory for Parallels Desktop
   config.vm.provider "parallels" do |p, o|
