@@ -52,3 +52,4 @@ $ ./build.sh
 - [ ] try bridge network
 - [x] register service w consul
 - [x] service discovery w consul
+- [ ] add checksum to build step
